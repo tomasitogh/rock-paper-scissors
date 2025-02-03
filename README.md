@@ -1,4 +1,5 @@
 # Rock Paper Scissors
+<<<<<<< HEAD
 
 Este es un juego de **Piedra, Papel o Tijera** que se juega desde la **consola de JavaScript**.
 
@@ -10,3 +11,5 @@ Este es un juego de **Piedra, Papel o Tijera** que se juega desde la **consola d
 
 ## Tecnologías usadas
 - JavaScript puro (sin frameworks)
+=======
+>>>>>>> a8cf377 (Added an user interface, Not functional with some errors ons display)
