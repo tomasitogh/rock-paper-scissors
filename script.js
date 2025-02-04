@@ -7,17 +7,17 @@ const btnScissors = document.querySelector("#scissors");
 const displayResults = document.querySelector("#displayResults");
 
 btnRock.addEventListener("click", () => {
-    humanScore, computerScore = playRound("rock", getComputerChoice());
+    [humanScore, computerScore] = playRound("rock", getComputerChoice(), humanScore, computerScore);
     displayResults.textContent = `Human score: ${humanScore},   Computer score: ${computerScore}`;
     didSomeoneWon();
 });
 btnPaper.addEventListener("click", () => {
-    humanScore, computerScore = playRound("paper", getComputerChoice());
+    [humanScore, computerScore] = playRound("paper", getComputerChoice(), humanScore, computerScore);
     displayResults.textContent = `Human score: ${humanScore},   Computer score: ${computerScore}`;
     didSomeoneWon();
 });
 btnScissors.addEventListener("click", () => {
-    [humanScore, computerScore] = playRound("scissors", getComputerChoice());
+    [humanScore, computerScore] = playRound("scissors", getComputerChoice(), humanScore, computerScore);
     displayResults.textContent = `Human score: ${humanScore},  Computer score: ${computerScore}`;
     didSomeoneWon();
 });
@@ -41,24 +41,26 @@ function getComputerChoice (){
         computerPlay = "rock";
     } else if (random <= 2/3){
         computerPlay = "paper";
+    } else if (random > 2/3){
+        computerPlay = "scissors";
     } else {
         computerPlay = "scissors";
     }
     return computerPlay;
 }
 
-function playRound(humanChoice, computerChoice){
+function playRound(humanChoice, computerChoice, hScore, cScore){
     humanChoice = humanChoice.toLowerCase();
     if ((humanChoice == 'rock' && computerChoice == 'scissors') || 
         (humanChoice == 'scissors' && computerChoice == 'paper') || 
         (humanChoice == 'paper' && computerChoice == 'rock')) {
-        humanScore++;
+        hScore++;
     } else if (((computerChoice == 'rock' && humanChoice == 'scissors') || 
                 (computerChoice == 'scissors' && humanChoice == 'paper') || 
                 (computerChoice == 'paper' && humanChoice == 'rock'))){
-        computerScore++;
+        cScore++;
     } else if (humanChoice == computerChoice){
         console.log("It's a draw.");
     }
-    return [humanScore, computerScore];
+    return [hScore, cScore];
 };
